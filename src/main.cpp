@@ -1,3 +1,5 @@
+// Amzer Gozh Monitor
+
 #include <Arduino.h>
 
 #include <OneWire.h>
@@ -116,15 +118,7 @@ byte getTemperature(float *temperature, byte reset_search) {
   ds.select(addr);
   ds.write(0xBE);
  
- /* Lecture du scratchpad */
-  for (byte i = 0; i < 9; i++) {
-    data[i] = ds.read();
-  }
-   
-  /* Calcul de la température en degré Celsius */
-  *temperature = (int16_t) ((data[1] << 8) | data[0]) * 0.0625; 
-  
-  // Pas d'erreur
+ /* Lecture du scratchpad */src/main.cpp
   return READ_OK;
 }
 
