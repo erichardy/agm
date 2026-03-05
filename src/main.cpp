@@ -18,15 +18,18 @@
 #endif
 
 float jj = 6.3;
+u_int16_t nbLoops = 0;
+
+OneWire ds(DS18B20_PIN);
+DallasTemperature sensors(&ds);
+DeviceAddress insideThermometer;
 
 
 void setup() {
   Serial.begin(115200);
-  Serial.print("dans setup");
-  // put your setup code here, to run once:
-  // display
+  Serial.println("dans setup...");
   
-  /* */
+  /*
   Serial.print("Parasite power is: "); 
   if (sensors.isParasitePowerMode()) Serial.println("ON");
   else Serial.println("OFF");
@@ -36,7 +39,7 @@ void setup() {
     Serial.println();
   sensors.setResolution(insideThermometer, TEMPERATURE_PRECISION);
   delay(500);
-  /* */
+  */
 }
 
 void loop() {
@@ -54,5 +57,9 @@ void loop() {
   // jj -= .32;
   xl += 2;
 */
-  delay(1000);
+  Serial.println(nbLoops++);
+  delay(500);
+  if (nbLoops > 3) {
+    goToBed(5000000);
+  }
 }

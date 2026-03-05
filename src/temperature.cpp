@@ -20,7 +20,7 @@ void printAddress(DeviceAddress deviceAddress) {
   }
 }
 
-float getExternalTemp() {
+float getInternalTemp(DallasTemperature sensors, DeviceAddress insideThermometer) {
   sensors.requestTemperatures();
   return sensors.getTempC(insideThermometer);
 }
@@ -28,12 +28,12 @@ float getExternalTemp() {
 /**
  * Fonction de lecture de la température via un capteur DS18B20.
  */
-byte getTemperature(float *temperature, byte reset_search) {
+byte getTemperature(float *temperature, byte reset_search, OneWire ds) {
   byte data[9], addr[8];
   // data[] : Données lues depuis le scratchpad
   // addr[] : Adresse du module 1-Wire détecté
   
-  /* Reset le bus 1-Wire ci nécessaire (requis pour la lecture du premier capteur) */
+  /* Reset le bus 1-Wire si nécessaire (requis pour la lecture du premier capteur) */
   if (reset_search) {
     ds.reset_search();
   }

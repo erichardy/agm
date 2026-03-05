@@ -1,9 +1,10 @@
 /* TODO
 A completer avec les déclarations... cf temperature.cpp
 */
-//  #ifndef TEMPERATURE_H
+// #ifndef TEMPERATURE_H
 // #define TEMPERATURE_H
 #pragma once
+
 #include <DallasTemperature.h>
 
 #define WIRE Wire
@@ -11,11 +12,11 @@ A completer avec les déclarations... cf temperature.cpp
 // related to DS18B20
 #define DS18B20_PIN 4
 #define TEMPERATURE_PRECISION 12
-/* */
+/*
 OneWire ds(DS18B20_PIN);
 DallasTemperature sensors(&ds);
 DeviceAddress insideThermometer;
-/* */
+*/
 
 /* Code de retour de la fonction getTemperature() */
 enum DS18B20_RCODES {
@@ -25,8 +26,8 @@ enum DS18B20_RCODES {
   INVALID_SENSOR  // Capteur invalide (pas un DS18B20)
 };
 
-float getExternalTemp();
-byte getTemperature(float *temperature, byte reset_search);
+float getInternalTemp(DallasTemperature sensors, DeviceAddress insideThermometer);
+byte getTemperature(float *temperature, byte reset_search, OneWire ds);
 void printAddress(DeviceAddress deviceAddress);
 
 // #endif
