@@ -2,6 +2,7 @@
 
 #include <Arduino.h>
 #include "temperature.h"
+
 #include "sleep.h"
 // #include "display.h"
 
@@ -25,7 +26,7 @@ void setup() {
   // put your setup code here, to run once:
   // display
   
-  /*
+  /* */
   Serial.print("Parasite power is: "); 
   if (sensors.isParasitePowerMode()) Serial.println("ON");
   else Serial.println("OFF");
@@ -35,7 +36,7 @@ void setup() {
     Serial.println();
   sensors.setResolution(insideThermometer, TEMPERATURE_PRECISION);
   delay(500);
-  */
+  /* */
 }
 
 void loop() {

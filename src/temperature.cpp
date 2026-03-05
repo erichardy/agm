@@ -1,16 +1,20 @@
 // Amzer Gozh Monitor
 
 #include <Wire.h>
+#include <DallasTemperature.h>
+
 #include "temperature.h"
 
 int xl = 0;
 float tempC = 0.0;
-
-
+/*
+OneWire ds(DS18B20_PIN);
+DallasTemperature sensors(&ds);
+DeviceAddress insideThermometer;
+*/
 // function to print a device address
 void printAddress(DeviceAddress deviceAddress) {
-  for (uint8_t i = 0; i < 8; i++)
-  {
+  for (uint8_t i = 0; i < 8; i++) {
     if (deviceAddress[i] < 16) Serial.print("0");
     Serial.print(deviceAddress[i], HEX);
   }
